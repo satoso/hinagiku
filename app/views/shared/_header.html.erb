@@ -1,0 +1,9 @@
+<div id="header">
+  <%= image_tag "hinagiku_logo.png", :size => "250x92", :alt => "サイトロゴ" %>
+  <% if current_user %>
+    <%= render "shared/user_menu" %>
+  <% else %>
+    <%= render "shared/visitor_menu" %>
+  <% end %>
+</div>
+

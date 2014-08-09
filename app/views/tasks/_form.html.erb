@@ -1,0 +1,22 @@
+<%= form_for @task do |form| %>
+  <%= render "shared/error_messages", :object => @task %>
+  <ul>
+    <li><%= form.label :name %><%= form.text_field :name %></li>
+    <% if current_user.categories.present? %>
+      <!-- <li><%= form.label :category_id %><%= form.select :category_id, category_options %></li> -->
+      <li><%= form.label :category_id %><%= render "radio_buttons", :form => form %></li>
+    <% end %>
+    <li>
+      <%= form.label :due_date %>
+      <%= form.date_select :due_date,
+      :use_month_numbers => true,
+      :order => [ :year, :month, :day ],
+      :start_year => Time.current.year,
+      :end_year => Time.current.year + 1 %>
+    </li>
+    <li><%= form.check_box :done %><%= form.label :done %></li>
+    <li><%= form.label :description %><%= form.text_area :description %></li>
+    <li class="buttons"><%= form.submit "送信" %></li>
+  </ul>
+<% end %>
+
